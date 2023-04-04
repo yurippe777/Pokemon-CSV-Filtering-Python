@@ -1,17 +1,21 @@
 from tkinter import *
+import time
 
 def ppt_function():
     # code for interacting with PPT files goes here
     print("Interacting with PPT files...")
-
+    toggle_buttons()
+    label = Label(root, text="Drag a .ppt file to this window", font=("Arial", 20), fg="white", bg='black')
+    label.place(relx=0.5, rely=0.1, anchor="center", bordermode="outside")
+    #root.after(5000, label.destroy)
 def obj_function():
     # code for interacting with OBJ files goes here
     print("Interacting with OBJ files...")
-
+    toggle_buttons()
 def pdf_function():
     # code for interacting with PDF files goes here
     print("Interacting with PDF files...")
-
+    toggle_buttons()
 def on_enter(event):
     event.widget.config(bg='light green', fg='black', font=("Arial", 24, "bold"), height=int(event.widget["height"]*1.7), width=int(event.widget["width"]*1.7))
     for child in button_frame.winfo_children():
@@ -23,6 +27,16 @@ def on_leave(event):
     for child in button_frame.winfo_children():
         if child != event.widget:
             child.config(height=int(child["height"]/0.3), width=int(child["width"]/0.3))
+def toggle_buttons():
+    # toggle the visibility of buttons
+    if ppt_button.winfo_ismapped():
+        ppt_button.grid_remove()
+        obj_button.grid_remove()
+        pdf_button.grid_remove()
+    else:
+        ppt_button.grid()
+        obj_button.grid()
+        pdf_button.grid()
 
 root = Tk()
 
@@ -60,5 +74,6 @@ button_frame.columnconfigure(0, weight=1)
 button_frame.columnconfigure(1, weight=1)
 button_frame.rowconfigure(0, weight=1)
 button_frame.rowconfigure(1, weight=1)
+
 
 root.mainloop()
