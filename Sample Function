@@ -1,0 +1,21 @@
+def obj_function():
+    # Turn buttons off and ask for OBJ file
+    toggle_buttons()
+    label = Label(root, text="Select an .obj file", font=("Arial", 20), fg="white", bg='black')
+    label.place(relx=0.5, rely=0.1, anchor="center", bordermode="outside")
+
+    # Show a file dialog for the user to select an .obj file
+    file_path = askopenfilename(title="Select an .obj file", filetypes=[("OBJ Files", "*.obj")])
+
+    if file_path:
+        # Check if the selected file has a valid file extension
+        file_extension = os.path.splitext(file_path)[1]
+        if file_extension.lower() == '.obj':
+            print("Interacting with OBJ file:", file_path)
+            label.destroy()
+            # Code for interacting with OBJ files goes here
+            # Open the file, read its contents, and display them in the Python program
+        else:
+            print("Error: Please select an .obj file.")
+    else:
+        print("No file selected.")
