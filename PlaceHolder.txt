@@ -1,4 +1,8 @@
 from tkinter import *
+from tkinter import Tk, Label
+from tkinter.filedialog import askopenfilename
+import os
+import PyPDF2
 
 def ppt_function():
     #turn buttons off and ask for ppt file
@@ -47,10 +51,6 @@ def obj_function():
         label.destroy()
         toggle_buttons()
 
-from tkinter import Tk, Label
-from tkinter.filedialog import askopenfilename
-import os
-import PyPDF2
 
 def pdf_function():
     # Turn buttons off and ask for PDF file
