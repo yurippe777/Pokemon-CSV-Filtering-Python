@@ -1,21 +1,83 @@
 from tkinter import *
-import time
 
 def ppt_function():
-    # code for interacting with PPT files goes here
-    print("Interacting with PPT files...")
+    #turn buttons off and ask for ppt file
     toggle_buttons()
-    label = Label(root, text="Drag a .ppt file to this window", font=("Arial", 20), fg="white", bg='black')
+    label = Label(root, text="Select a .ppt or .pptx file", font=("Arial", 20), fg="white", bg='black')
     label.place(relx=0.5, rely=0.1, anchor="center", bordermode="outside")
+    # Show a file dialog for the user to select a .ppt or .pptx file
+    file_path = askopenfilename(title="Select a .ppt or .pptx file", filetypes=[("PowerPoint Files", "*.ppt;*.pptx")])
+
+    if file_path:
+        # Check if the selected file has a valid file extension
+        file_extension = os.path.splitext(file_path)[1]
+        if file_extension.lower() == '.ppt' or file_extension.lower() == '.pptx':
+            print("Interacting with PPT file:", file_path)
+            label.destroy()
+            # Code for interacting with PPT files goes here
+            # Open the file, read its contents, and display them in the Python program
+        else:
+            print("Error: Please select a .ppt or .pptx file.")
+    else:
+        print("No file selected.")
+        label.destroy()
+        toggle_buttons()
     #root.after(5000, label.destroy)
 def obj_function():
-    # code for interacting with OBJ files goes here
-    print("Interacting with OBJ files...")
+    # Turn buttons off and ask for OBJ file
     toggle_buttons()
+    label = Label(root, text="Select an .obj file", font=("Arial", 20), fg="white", bg='black')
+    label.place(relx=0.5, rely=0.1, anchor="center", bordermode="outside")
+
+    # Show a file dialog for the user to select an .obj file
+    file_path = askopenfilename(title="Select an .obj file", filetypes=[("OBJ Files", "*.obj")])
+
+    if file_path:
+        # Check if the selected file has a valid file extension
+        file_extension = os.path.splitext(file_path)[1]
+        if file_extension.lower() == '.obj':
+            print("Interacting with OBJ file:", file_path)
+            label.destroy()
+            # Code for interacting with OBJ files goes here
+            # Open the file, read its contents, and display them in the Python program
+        else:
+            print("Error: Please select an .obj file.")
+    else:
+        print("No file selected.")
+        label.destroy()
+        toggle_buttons()
+
+from tkinter import Tk, Label
+from tkinter.filedialog import askopenfilename
+import os
+import PyPDF2
+
 def pdf_function():
-    # code for interacting with PDF files goes here
-    print("Interacting with PDF files...")
+    # Turn buttons off and ask for PDF file
     toggle_buttons()
+    label = Label(root, text="Select a PDF file", font=("Arial", 20), fg="white", bg='black')
+    label.place(relx=0.5, rely=0.1, anchor="center", bordermode="outside")
+    # Show a file dialog for the user to select a PDF file
+    file_path = askopenfilename(title="Select a PDF file", filetypes=[("PDF Files", "*.pdf")])
+
+    if file_path:
+        # Check if the selected file has a valid file extension
+        file_extension = os.path.splitext(file_path)[1]
+        if file_extension.lower() == '.pdf':
+            print("Interacting with PDF file:", file_path)
+            label.destroy()
+            # Code for interacting with PDF files goes here
+            # Open the file, read its contents, and display them in the Python program
+            with open(file_path, 'rb') as file:
+                pdf_reader = PyPDF2.PdfReader(file)
+                for page in pdf_reader.pages:
+                    print(page.extract_text())
+        else:
+            print("Error: Please select a PDF file.")
+    else:
+        print("No file selected.")
+        label.destroy()
+        toggle_buttons()
 def on_enter(event):
     event.widget.config(bg='light green', fg='black', font=("Arial", 24, "bold"), height=int(event.widget["height"]*1.7), width=int(event.widget["width"]*1.7))
     for child in button_frame.winfo_children():
