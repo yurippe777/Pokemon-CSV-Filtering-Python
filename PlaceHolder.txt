@@ -3,6 +3,7 @@ from tkinter import Tk, Label
 from tkinter.filedialog import askopenfilename
 import os
 import PyPDF2
+from PyPDF2 import PdfReader
 
 def ppt_function():
     #turn buttons off and ask for ppt file
@@ -66,12 +67,23 @@ def pdf_function():
         if file_extension.lower() == '.pdf':
             print("Interacting with PDF file:", file_path)
             label.destroy()
+
+            # Create a new window to display the PDF file contents
+            pdf_window = Toplevel(root)
+            pdf_window.title("PDF Viewer")
+            pdf_window.geometry("800x600")
+
+            # Create a text widget to display the PDF file contents
+            text_widget = Text(pdf_window, font=("Arial", 12))
+            text_widget.pack(expand=True, fill=BOTH)
+
             # Code for interacting with PDF files goes here
             # Open the file, read its contents, and display them in the Python program
             with open(file_path, 'rb') as file:
-                pdf_reader = PyPDF2.PdfReader(file)
-                for page in pdf_reader.pages:
-                    print(page.extract_text())
+                pdf_reader = PdfReader(file)
+                for page in range(len(pdf_reader.pages)):
+                    text_widget.insert(END, pdf_reader.pages[page].extract_text())
+
         else:
             print("Error: Please select a PDF file.")
     else:
