@@ -6,7 +6,7 @@ import PyPDF2
 from PyPDF2 import PdfReader
 
 def ppt_function():
-    #turn buttons off and ask for ppt file
+    #turn buttons off and ask for ppt files
     toggle_buttons()
     label = Label(root, text="Select a .ppt or .pptx file", font=("Arial", 20), fg="white", bg='black')
     label.place(relx=0.5, rely=0.1, anchor="center", bordermode="outside")
