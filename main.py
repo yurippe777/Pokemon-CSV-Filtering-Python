@@ -31,7 +31,9 @@ while True:
     filtered_df = filtered_df.loc[mask]
 
     # Save the filtered results to a new CSV file
+    filtered_df = filtered_df[['Name', 'Type1', 'Type2', 'Ability1', 'Ability2', 'Ability_Hidden', 'HP', 'Attack', 'Defense', 'SP_Attack', 'SP_Defense', 'Speed']]
     filtered_df.to_csv("pokemonfiltered.csv", index=False)
 
     easygui.msgbox("Filtered results saved to pokemonfiltered.csv", "Results")
+
 
