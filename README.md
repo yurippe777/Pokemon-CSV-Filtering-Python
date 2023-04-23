@@ -10,3 +10,8 @@
 
 
 ![](https://github.com/yurippe777/Pokemon-CSV-Filtering-Python/blob/main/PokemonFilter.gif)
+
+
+
+
+If you would like to request a full release, message me and I will make one.
