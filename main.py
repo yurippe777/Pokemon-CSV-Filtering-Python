@@ -35,7 +35,9 @@ while True:
     if not filtered_df.empty:
         filtered_df = filtered_df[['Name', 'Type1', 'Type2', 'Ability1', 'Ability2', 'Ability_Hidden', 'HP', 'Attack', 'Defense', 'SP_Attack', 'SP_Defense', 'Speed']]
         filtered_df.to_csv("pokemonfiltered.csv", index=False)
-        easygui.msgbox("Filtered results saved to pokemonfiltered.csv", "Results")
+        result = filtered_df.to_string(index=False)  # Convert DataFrame to a string for display
+        easygui.codebox(msg="Filtered results saved to pokemonfiltered.csv", title="Results", text=result)
         df = pd.read_csv("pokemon.csv")
         filtered_df = df
+
 
