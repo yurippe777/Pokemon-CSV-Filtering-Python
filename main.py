@@ -11,10 +11,11 @@ while True:
     choices = easygui.multchoicebox("Select one or more types to filter by:", "Filter by Type", ['Any'] + types, preselect=None)
     if choices is None:  # Handle close window button click
         sys.exit()
-    elif 'Any' not in choices:  # Handle filtering by type
-        if len(choices) > 2:
-            easygui.msgbox("Please select only two types.", "Error")
-            continue
+    elif 'Any' in choices and len(choices) > 1 or len(choices) > 2:  # Handle filtering by type
+        easygui.msgbox("Please select no more then two types", "Error")
+        continue
+        # Filter the DataFrame by the selected types
+    elif 'Any' not in choices:
         # Filter the DataFrame by the selected types
         mask_type = df.apply(lambda row: all(x in row[['Type1', 'Type2']].tolist() for x in choices), axis=1)
         df = df.loc[mask_type]
@@ -39,5 +40,4 @@ while True:
         easygui.codebox(msg="Filtered results saved to pokemonfiltered.csv", title="Results", text=result)
         df = pd.read_csv("pokemon.csv")
         filtered_df = df
-
 
