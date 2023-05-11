@@ -1,8 +1,8 @@
 # Advanced-Up-To-Date-Pokemon-Filter
-• Allows you to easily filter through Pokemon types and abilities
+• Allows you to easily filter through Pokemon types and abilities.
 
 
-• Includes each individual stat for each Pokemon
+• Includes each individual stat for each Pokemon.
 
 
 • Includes Gen 1-9, or Bulbasaur to Iron Leaves.
